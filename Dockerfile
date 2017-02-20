@@ -7,6 +7,7 @@ RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
+ENV MIX_ENV prod
 
 # Install essentials
 RUN apt update && apt install -y curl wget zip git
@@ -35,7 +36,7 @@ RUN mix compile
 
 RUN npm install
 
-# Run in production 
+# Run in production
 # http://www.phoenixframework.org/v0.7.2/docs/running-in-production-or-performance-testing
 RUN mix compile.protocols
 CMD ["elixir","-pa","_build/prod/consolidated","-S","mix","phoenix.server"]
